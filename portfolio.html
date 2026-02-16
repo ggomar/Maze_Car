@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Omar Ahmed Samy · modern data portfolio</title>
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: #0a0f1e;
+            color: #e0e7ff;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Animated background blobs */
+        .blob {
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            background: linear-gradient(180deg, rgba(45, 85, 255, 0.15) 0%, rgba(100, 50, 255, 0.05) 100%);
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -1;
+            animation: blobMove 20s infinite alternate ease-in-out;
+        }
+
+        .blob-1 {
+            top: -100px;
+            left: -100px;
+            background: rgba(75, 130, 255, 0.2);
+            animation-duration: 25s;
+        }
+
+        .blob-2 {
+            bottom: -150px;
+            right: -100px;
+            width: 600px;
+            height: 600px;
+            background: rgba(150, 70, 255, 0.15);
+            animation-duration: 30s;
+            animation-delay: -5s;
+        }
+
+        .blob-3 {
+            top: 40%;
+            left: 60%;
+            width: 400px;
+            height: 400px;
+            background: rgba(0, 200, 255, 0.1);
+            animation-duration: 22s;
+            animation-delay: -10s;
+        }
+
+        @keyframes blobMove {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(100px, 100px) scale(1.2); }
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 28px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Glass effect header */
+        .hero {
+            background: rgba(10, 20, 40, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: white;
+            padding: 72px 0 56px;
+            border-bottom-left-radius: 48px;
+            border-bottom-right-radius: 48px;
+            box-shadow: 0 30px 50px -20px rgba(0,0,0,0.8);
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            background: linear-gradient(130deg, #fff, #a5c9ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 12px;
+        }
+
+        .hero-tagline {
+            font-size: 1.6rem;
+            font-weight: 400;
+            color: #9bb9ff;
+            margin-bottom: 24px;
+        }
+
+        .hero-contact {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px 36px;
+            justify-content: center;
+            margin: 28px 0 32px;
+        }
+
+        .hero-contact a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            background: rgba(255,255,255,0.05);
+            padding: 10px 28px;
+            border-radius: 60px;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1rem;
+        }
+
+        .hero-contact a:hover {
+            background: rgba(255,255,255,0.15);
+            border-color: #5f9eff;
+            transform: scale(1.05);
+        }
+
+        .hero-img {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid rgba(255,255,255,0.2);
+            box-shadow: 0 30px 50px -15px #000000cc;
+            margin: 30px 0 10px;
+            transition: 0.4s;
+        }
+
+        .hero-img:hover {
+            transform: scale(1.02);
+            border-color: #5f9eff;
+        }
+
+        /* Glass navigation */
+        .sticky-nav {
+            position: sticky;
+            top: 20px;
+            z-index: 100;
+            margin-top: -28px;
+            margin-bottom: 28px;
+        }
+
+        .nav-wrap {
+            background: rgba(15, 25, 45, 0.7);
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 80px;
+            padding: 10px 16px;
+            box-shadow: 0 20px 40px -10px #00000080, 0 0 0 1px rgba(255,255,255,0.1) inset;
+            display: inline-flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: auto;
+            margin: 0 auto;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            justify-content: center;
+        }
+
+        .nav-links a {
+            padding: 12px 28px;
+            font-weight: 600;
+            border-radius: 60px;
+            color: #d0dcff;
+            text-decoration: none;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1rem;
+        }
+
+        .nav-links a i {
+            font-size: 1.2rem;
+            color: #7f9fff;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.1);
+            color: white;
+        }
+
+        .nav-links a.active {
+            background: #2d4b9e;
+            color: white;
+            box-shadow: 0 12px 18px -10px #0a1a3a;
+        }
+
+        .nav-links a.active i {
+            color: white;
+        }
+
+        /* Glass sections */
+        .page-section {
+            background: rgba(15, 25, 45, 0.5);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 56px;
+            padding: 60px 60px;
+            margin: 60px 0;
+            box-shadow: 0 30px 60px -20px #00000080;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 40px;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 2px solid rgba(95, 158, 255, 0.3);
+            padding-bottom: 15px;
+        }
+
+        .section-title i {
+            font-size: 2.5rem;
+            color: #5f9eff;
+            background: rgba(95, 158, 255, 0.1);
+            padding: 12px;
+            border-radius: 50%;
+        }
+
+        /* about area */
+        .about-grid {
+            display: flex;
+            gap: 80px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .about-grid img {
+            width: 380px;
+            height: 380px;
+            border-radius: 40% 60% 40% 60% / 60% 40% 60% 40%;
+            object-fit: cover;
+            border: 4px solid rgba(255,255,255,0.2);
+            box-shadow: 0 50px 70px -30px #000000;
+            transition: 0.5s;
+        }
+
+        .about-grid img:hover {
+            border-radius: 50% 50% 40% 60% / 50% 40% 60% 50%;
+            transform: scale(1.02);
+            border-color: #5f9eff;
+        }
+
+        .about-text p {
+            font-size: 1.2rem;
+            color: #cdd9ff;
+            margin-bottom: 30px;
+        }
+
+        .btn-modern {
+            background: linear-gradient(115deg, #2d4b9e, #1f3a7a);
+            color: white;
+            border: none;
+            padding: 16px 42px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            box-shadow: 0 20px 25px -10px #0a1a3a;
+            backdrop-filter: blur(4px);
+            transition: 0.25s;
+            text-decoration: none;
+            display: inline-block;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .btn-modern i { margin-right: 8px; }
+        .btn-modern:hover {
+            background: linear-gradient(115deg, #3a5fbf, #2d4b9e);
+            transform: translateY(-5px);
+            box-shadow: 0 30px 30px -10px #0a1a3a;
+        }
+
+        /* skills grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-card-modern {
+            background: rgba(20, 30, 55, 0.6);
+            backdrop-filter: blur(4px);
+            border-radius: 36px;
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: 0 10px 20px -8px #00000040;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: 0.25s;
+        }
+
+        .skill-card-modern:hover {
+            background: rgba(35, 50, 80, 0.7);
+            transform: translateY(-10px);
+            border-color: #5f9eff60;
+            box-shadow: 0 30px 30px -14px #000000b0;
+        }
+
+        .skill-card-modern i {
+            font-size: 3.8rem;
+            background: linear-gradient(145deg, #7f9fff, #5f9eff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 18px;
+        }
+
+        .skill-card-modern h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .skill-card-modern p {
+            font-size: 1.1rem;
+            color: #b0c4ff;
+        }
+
+        /* project cards */
+        .project-glass {
+            display: flex;
+            gap: 40px;
+            background: rgba(20, 30, 55, 0.5);
+            backdrop-filter: blur(8px);
+            border-radius: 48px;
+            padding: 40px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: 0.2s;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .project-glass:hover {
+            background: rgba(30, 45, 75, 0.6);
+            border-color: #5f9eff60;
+        }
+
+        .project-icon {
+            font-size: 5.5rem;
+            background: linear-gradient(145deg, #7f9fff, #5f9eff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            min-width: 120px;
+            text-align: center;
+        }
+
+        .project-content-glass {
+            flex: 1;
+        }
+
+        .project-content-glass h3 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .project-content-glass p {
+            font-size: 1.15rem;
+            margin-bottom: 22px;
+            color: #cdd9ff;
+        }
+
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0 15px;
+        }
+
+        .github-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #1e2a47;
+            color: white;
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 1rem;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: 0.2s;
+            box-shadow: 0 8px 15px -5px #00000080;
+        }
+
+        .github-btn:hover {
+            background: #2a3a62;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 20px -8px #000000b0;
+        }
+
+        .drive-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #0f5c3a;
+            color: white;
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 1rem;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: 0.2s;
+            box-shadow: 0 8px 15px -5px #00000080;
+        }
+
+        .drive-btn:hover {
+            background: #137a4b;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 20px -8px #000000b0;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 15px;
+        }
+
+        .tech-tags span {
+            background: rgba(95, 158, 255, 0.1);
+            border-radius: 40px;
+            padding: 8px 24px;
+            font-weight: 600;
+            color: #b0d0ff;
+            border: 1px solid rgba(95, 158, 255, 0.3);
+            backdrop-filter: blur(4px);
+        }
+
+        /* education block */
+        .edu-modern {
+            background: rgba(20, 30, 55, 0.5);
+            backdrop-filter: blur(8px);
+            border-radius: 48px;
+            padding: 48px;
+            border-left: 8px solid #5f9eff;
+            box-shadow: 0 30px 30px -18px #000000;
+        }
+
+        .edu-modern h3 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .edu-modern .meta {
+            font-size: 1.4rem;
+            color: #9bb9ff;
+            margin: 8px 0 32px;
+        }
+
+        .edu-grid-list {
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
+            gap: 20px 40px;
+        }
+
+        .edu-grid-list li {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-size: 1.15rem;
+            color: #cdd9ff;
+        }
+
+        .edu-grid-list i {
+            color: #5f9eff;
+            font-size: 1.5rem;
+        }
+
+        /* contact cards */
+        .contact-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+            gap: 30px;
+        }
+
+        .contact-glass-item {
+            background: rgba(20, 30, 55, 0.5);
+            backdrop-filter: blur(4px);
+            border-radius: 36px;
+            padding: 30px 20px;
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: 0.2s;
+        }
+
+        .contact-glass-item:hover {
+            background: rgba(35, 50, 80, 0.6);
+            border-color: #5f9eff60;
+        }
+
+        .contact-glass-item i {
+            font-size: 2.8rem;
+            background: linear-gradient(130deg, #7f9fff, #5f9eff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            width: 60px;
+            text-align: center;
+        }
+
+        .contact-info strong {
+            font-size: 1.2rem;
+            color: white;
+        }
+
+        .contact-info a {
+            color: #9bb9ff;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+            color: white;
+        }
+
+        /* footer */
+        .footer-modern {
+            background: rgba(10, 15, 30, 0.8);
+            backdrop-filter: blur(8px);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            color: #a0b5e0;
+            border-radius: 48px 48px 0 0;
+            padding: 48px 0;
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        .footer-modern a {
+            color: #9bb9ff;
+            margin: 0 18px;
+            text-decoration: none;
+        }
+
+        .footer-modern a:hover {
+            color: white;
+        }
+
+        /* tab visibility */
+        .page { display: none; scroll-margin-top: 100px; }
+        .page:target { display: block; }
+        #home:target, #about:target, #skills:target, #projects:target, #education:target, #contact:target { display: block; }
+        #home { display: block; }
+        body:has(:target) #home:not(:target) { display: none; }
+
+        @media (max-width:700px){
+            .hero h1{font-size:3rem;}
+            .hero-tagline{font-size:1.3rem;}
+            .hero-img{width:200px; height:200px;}
+            .about-grid img{width:280px; height:280px;}
+            .page-section{padding:36px 24px;}
+            .nav-wrap{padding:8px;}
+            .nav-links a{padding:8px 18px;}
+            .project-content-glass h3{font-size:1.8rem;}
+            .about-grid{gap:40px;}
+            .button-group{flex-direction: column;}
+            .github-btn, .drive-btn{justify-content: center;}
+            .section-title{font-size:2.2rem;}
+            .section-title i{font-size:2rem;}
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated background blobs -->
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+
+    <!-- hero section -->
+    <div class="hero">
+        <div class="container">
+            <h1>Omar Ahmed Samy</h1>
+            <div class="hero-tagline">data engineering · embedded systems · creative technologist</div>
+            <div class="hero-contact">
+                <a href="mailto:omarahmed622006@gmail.com"><i class="fa-regular fa-envelope"></i> omarahmed622006@gmail.com</a>
+                <a href="tel:+201006270751"><i class="fa-solid fa-phone"></i> +20 100 627 0751</a>
+                <a href="https://linkedin.com/in/omarahmedsamy" target="_blank"><i class="fa-brands fa-linkedin"></i> linkedin.com/in/omarahmedsamy</a>
+            </div>
+            <img src="omar profile.jpg" alt="Omar Ahmed Samy" class="hero-img">
+        </div>
+    </div>
+
+    <!-- sticky navigation -->
+    <div class="sticky-nav">
+        <div class="container" style="display: flex; justify-content: center;">
+            <div class="nav-wrap">
+                <div class="nav-links">
+                    <a href="#home" class="nav-tab"><i class="fa-solid fa-house"></i> Home</a>
+                    <a href="#about" class="nav-tab"><i class="fa-regular fa-user"></i> About</a>
+                    <a href="#skills" class="nav-tab"><i class="fa-regular fa-code"></i> Skills</a>
+                    <a href="#projects" class="nav-tab"><i class="fa-regular fa-diagram-project"></i> Projects</a>
+                    <a href="#education" class="nav-tab"><i class="fa-regular fa-graduation-cap"></i> Education</a>
+                    <a href="#contact" class="nav-tab"><i class="fa-regular fa-address-card"></i> Contact</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- HOME page -->
+        <section id="home" class="page page-section">
+            <h2 class="section-title"><i class="fa-solid fa-globe"></i> hello, world</h2>
+            <div style="max-width: 900px;">
+                <p style="font-size: 2rem; font-weight: 400; background: linear-gradient(130deg,#a5c9ff,#5f9eff); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">where data meets hardware intuition</p>
+                <p style="font-size:1.3rem; margin: 35px 0; color:#cdd9ff;">I'm Omar — CS student at ECU, building a foundation in data engineering and embedded systems. I love crafting smart solutions from sensors to ETL.</p>
+                <div style="display:flex; gap:30px; flex-wrap:wrap;">
+                    <a href="#projects" class="btn-modern"><i class="fa-regular fa-eye"></i> see projects</a>
+                    <a href="#contact" class="btn-modern" style="background:transparent; border:2px solid #5f9eff;"><i class="fa-regular fa-comment"></i> say hi</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT page -->
+        <section id="about" class="page page-section">
+            <h2 class="section-title"><i class="fa-regular fa-user"></i> about me</h2>
+            <div class="about-grid">
+                <img src="omar profile.jpg" alt="Omar Ahmed Samy">
+                <div class="about-text">
+                    <p>I'm driven by curiosity about how data transforms industries. Starting with C++ and Arduino, I built autonomous systems like a maze car and a multi-function digital clock. Now I'm diving into data engineering: data modeling, pipelines, and cloud fundamentals. My mission is to build robust, scalable data platforms.</p>
+                    <p>Outside studies: I contribute to university robotics club and constantly experiment with sensor data. I believe the best data engineers understand both software and hardware constraints.</p>
+                    <a href="#" class="btn-modern"><i class="fa-regular fa-file-pdf"></i> download resume</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SKILLS page -->
+        <section id="skills" class="page page-section">
+            <h2 class="section-title"><i class="fa-solid fa-code"></i> skills & toolkit</h2>
+            <div class="skills-grid">
+                <div class="skill-card-modern"><i class="fa-solid fa-laptop-code"></i><h3>Languages</h3><p>C++, Python, SQL, Arduino C</p></div>
+                <div class="skill-card-modern"><i class="fa-solid fa-database"></i><h3>Data Engineering</h3><p>ETL concepts, data warehousing, Python</p></div>
+                <div class="skill-card-modern"><i class="fa-solid fa-microchip"></i><h3>Embedded Systems</h3><p>Arduino, sensors, LCD, RFID, servo motors</p></div>
+                <div class="skill-card-modern"><i class="fa-solid fa-clock"></i><h3>Problem Solving</h3><p>Data structures, algorithms, debugging</p></div>
+            </div>
+        </section>
+
+        <!-- PROJECTS page -->
+        <section id="projects" class="page page-section">
+            <h2 class="section-title"><i class="fa-regular fa-diagram-project"></i> featured projects</h2>
+            
+            <!-- NEW PROJECT: Multi-function Digital Clock -->
+            <div class="project-glass">
+                <div class="project-icon"><i class="fa-solid fa-clock"></i></div>
+                <div class="project-content-glass">
+                    <h3>Multi-function Digital Clock & Weather Station</h3>
+                    <p>Advanced Arduino-based clock with multiple features: time display (hours/minutes/seconds), countdown timer, alarm system, Gregorian calendar, and temperature sensor. Built with RTC module, LCD 16x2, and DHT11 temperature sensor.</p>
+                    
+                    <div class="button-group">
+                        <a href="https://github.com/omarahmedsamy/digital-clock" class="github-btn" target="_blank">
+                            <i class="fa-brands fa-github"></i> View Code on GitHub
+                        </a>
+                        <a href="https://drive.google.com/drive/folders/your-clock-folder-id" class="drive-btn" target="_blank">
+                            <i class="fa-brands fa-google-drive"></i> Photos & Video
+                        </a>
+                    </div>
+                    
+                    <div class="tech-tags">
+                        <span>Arduino Uno</span>
+                        <span>LCD 16x2</span>
+                        <span>RTC DS3231</span>
+                        <span>DHT11</span>
+                        <span>Buzzer</span>
+                        <span>C++</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Maze Car Project -->
+            <div class="project-glass">
+                <div class="project-icon"><i class="fa-solid fa-car"></i></div>
+                <div class="project-content-glass">
+                    <h3>Autonomous Maze Car</h3>
+                    <p>Obstacle avoidance vehicle with right‑hand rule maze solving. Ultrasonic + servo, motor driver, state machine. Real-time decision making with Arduino.</p>
+                    
+                    <div class="button-group">
+                        <a href="https://github.com/omarahmedsamy/maze-car" class="github-btn" target="_blank">
+                            <i class="fa-brands fa-github"></i> View Code on GitHub
+                        </a>
+                        <a href="https://drive.google.com/drive/folders/your-maze-folder-id" class="drive-btn" target="_blank">
+                            <i class="fa-brands fa-google-drive"></i> Photos & Video
+                        </a>
+                    </div>
+                    
+                    <div class="tech-tags">
+                        <span>Arduino Uno</span>
+                        <span>DC motors</span>
+                        <span>Ultrasonic</span>
+                        <span>Servo</span>
+                        <span>L298N</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- RFID Smart Door Project -->
+            <div class="project-glass">
+                <div class="project-icon"><i class="fa-solid fa-house-circle-check"></i></div>
+                <div class="project-content-glass">
+                    <h3>Smart Home Access (RFID Door)</h3>
+                    <p>RFID-based smart door system. When you tap your card on the RC522 RFID sensor, the servo motor opens the door. Tap again to close. Secure access control with Arduino.</p>
+                    
+                    <div class="button-group">
+                        <a href="https://github.com/omarahmedsamy/rfid-door" class="github-btn" target="_blank">
+                            <i class="fa-brands fa-github"></i> View Code on GitHub
+                        </a>
+                        <a href="https://drive.google.com/drive/folders/your-rfid-folder-id" class="drive-btn" target="_blank">
+                            <i class="fa-brands fa-google-drive"></i> Photos & Video
+                        </a>
+                    </div>
+                    
+                    <div class="tech-tags">
+                        <span>Arduino</span>
+                        <span>RFID RC522</span>
+                        <span>Servo Motor</span>
+                        <span>Access Control</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EDUCATION page -->
+        <section id="education" class="page page-section">
+            <h2 class="section-title"><i class="fa-solid fa-graduation-cap"></i> education</h2>
+            <div class="edu-modern">
+                <h3><i class="fa-solid fa-building-columns"></i> Egyptian Chinese University (ECU)</h3>
+                <div class="meta">B.Sc. Computer Science · Oct 2024 – 2028 · CGPA 3.2</div>
+                <ul class="edu-grid-list">
+                    <li><i class="fa-regular fa-circle-check"></i> Data structures & algorithms</li>
+                    <li><i class="fa-regular fa-circle-check"></i> Database fundamentals</li>
+                    <li><i class="fa-regular fa-circle-check"></i> OOP / software engineering</li>
+                    <li><i class="fa-regular fa-circle-check"></i> Intro to data engineering</li>
+                    <li><i class="fa-regular fa-circle-check"></i> Robotics lab member</li>
+                    <li><i class="fa-regular fa-circle-check"></i> Dean's list 2025</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- CONTACT page -->
+        <section id="contact" class="page page-section">
+            <h2 class="section-title"><i class="fa-regular fa-address-card"></i> let's connect</h2>
+            <div class="contact-cards">
+                <div class="contact-glass-item"><i class="fa-solid fa-phone"></i><div class="contact-info"><strong>Phone</strong><br><a href="tel:+201006270751">01006270751</a></div></div>
+                <div class="contact-glass-item"><i class="fa-regular fa-envelope"></i><div class="contact-info"><strong>Email</strong><br><a href="mailto:omarahmed622006@gmail.com">omarahmed622006@gmail.com</a></div></div>
+                <div class="contact-glass-item"><i class="fa-brands fa-linkedin"></i><div class="contact-info"><strong>LinkedIn</strong><br><a href="https://linkedin.com/in/omarahmedsamy" target="_blank">/in/omarahmedsamy</a></div></div>
+                <div class="contact-glass-item"><i class="fa-solid fa-map-pin"></i><div class="contact-info"><strong>Location</strong><br>Cairo, Nasr City</div></div>
+            </div>
+        </section>
+    </div>
+
+    <!-- footer -->
+    <footer class="footer-modern">
+        <p>© 2025 Omar Ahmed Samy — crafted with <i class="fa-regular fa-heart" style="color:#5f9eff;"></i> for data & design</p>
+        <div style="margin-top: 20px;">
+            <a href="https://linkedin.com/in/omarahmedsamy" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="mailto:omarahmed622006@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+            <a href="#home"><i class="fa-solid fa-arrow-up"></i> back to top</a>
+        </div>
+    </footer>
+
+    <!-- active tab script -->
+    <script>
+        (function(){
+            const tabs = document.querySelectorAll('.nav-tab');
+            function setActive(){
+                const hash = window.location.hash || '#home';
+                tabs.forEach(tab => {
+                    tab.classList.toggle('active', tab.getAttribute('href') === hash);
+                });
+            }
+            window.addEventListener('load', setActive);
+            window.addEventListener('hashchange', setActive);
+            if(!window.location.hash) document.querySelector('.nav-tab[href="#home"]').classList.add('active');
+        })();
+    </script>
+</body>
+</html>
